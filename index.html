@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>দল নিবন্ধন | চতুর্দশ জাতীয় বিতর্ক উৎসব ২০২৬</title>
+<title>চতুর্দশ জাতীয় বিতর্ক উৎসব ২০২৬</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&family=Noto+Serif+Bengali:wght@600;800&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@ body{
 a{color:inherit}
 :focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
 
-/* ---------- হেডার: আলপনা নকশা + ঝালর ---------- */
+/* হেডার */
 .masthead{
   position:relative;background:var(--green-deep);color:var(--white);
   text-align:center;padding:2.6rem 1.25rem 2.4rem;
@@ -38,7 +38,7 @@ a{color:inherit}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23f2b705' stroke-width='1.3'%3E%3Cpath d='M28 4l10 24-10 24-10-24z'/%3E%3Ccircle cx='28' cy='28' r='4'/%3E%3Cpath d='M0 28h12M44 28h12M28 0v4M28 52v4'/%3E%3C/g%3E%3C/svg%3E");
 }
 .masthead > *{position:relative}
-.masthead::after{ /* ঝালর */
+.masthead::after{
   content:"";position:absolute;left:0;right:0;top:100%;height:16px;
   background:radial-gradient(circle at 14px 0,var(--green-deep) 13px,transparent 14px) 0 0/28px 16px repeat-x;
 }
@@ -56,53 +56,28 @@ a{color:inherit}
 }
 
 main{max-width:900px;margin:0 auto;padding:3.2rem 1.25rem 2rem}
-.section-title{
-  font-family:var(--serif);font-weight:800;color:var(--green-deep);
-  font-size:clamp(1.4rem,3.6vw,1.9rem);margin:0 0 .4rem;
-}
 
-/* ---------- ব্যানার ---------- */
+/* ব্যানার */
 .frame{
   background:var(--white);padding:.9rem;border:3px dashed var(--green);border-radius:6px;
   box-shadow:10px 10px 0 var(--yellow);
 }
 .frame img{display:block;width:100%;height:auto;border-radius:3px}
 
-/* ---------- নিবন্ধনের বোতাম ---------- */
+/* বোতাম */
 .cta{
-  margin:4rem 0 3rem;text-align:center;padding:2.2rem 1.2rem 2.4rem;
-  background:var(--yellow);color:var(--green-deep);
+  margin:3.5rem 0 2rem;text-align:center;padding:2.4rem 1.2rem;
+  background:var(--yellow);
   border:3px solid var(--green-deep);border-radius:8px;
   outline:3px dashed var(--green-deep);outline-offset:-12px;
 }
-.cta .section-title{margin-bottom:.3rem}
-.cta p{margin:0 0 1.4rem}
-.cta .row{display:flex;flex-wrap:wrap;justify-content:center;gap:.9rem}
 .btn{
-  display:inline-block;padding:.75rem 2.2rem;text-decoration:none;font-weight:600;
-  font-size:1.15rem;color:var(--white);background:var(--green-deep);
+  display:inline-block;padding:.85rem 2.8rem;text-decoration:none;font-weight:600;
+  font-size:1.25rem;color:var(--white);background:var(--green-deep);
   border-radius:999px;border:2px solid var(--green-deep);
   transition:background .2s,color .2s;
 }
 .btn:hover{background:var(--white);color:var(--green-deep)}
-.btn.alt{background:var(--white);color:var(--green-deep)}
-.btn.alt:hover{background:var(--green-deep);color:var(--white)}
-.btn[hidden]{display:none}
-
-/* ---------- ধাপ ---------- */
-.steps-wrap{margin:0 0 2rem}
-.steps{list-style:none;margin:1rem 0 0;padding:0;counter-reset:step;display:grid;gap:.9rem}
-.steps li{
-  counter-increment:step;position:relative;padding:.9rem 1rem .9rem 4.2rem;
-  border:2px solid var(--green-deep);border-radius:10px;background:var(--white);
-}
-.steps li::before{
-  content:counter(step,bengali);position:absolute;left:.9rem;top:50%;transform:translateY(-50%);
-  width:2.5rem;height:2.5rem;border-radius:999px 999px 8px 8px;
-  display:grid;place-items:center;background:var(--yellow);color:var(--green-deep);
-  border:2px solid var(--green-deep);font-family:var(--serif);font-weight:800;font-size:1.2rem;
-}
-.steps b{font-family:var(--serif);color:var(--green-deep)}
 
 footer{
   margin-top:3rem;padding:1.4rem 1.25rem 1.8rem;text-align:center;
@@ -114,7 +89,6 @@ footer a{font-weight:600}
 @media (max-width:680px){
   .frame{box-shadow:6px 6px 0 var(--yellow)}
   .cta .btn{width:100%;text-align:center}
-  .steps li{padding-left:3.8rem}
 }
 </style>
 </head>
@@ -122,8 +96,7 @@ footer a{font-weight:600}
 
 <header class="masthead">
   <p class="presented">করিম গ্রুপ নিবেদিত</p>
-  <h1>দল নিবন্ধন</h1>
-  <p class="sub">চতুর্দশ জাতীয় বিতর্ক উৎসব ২০২৬ (OPEN)</p>
+  <h1>চতুর্দশ জাতীয় বিতর্ক উৎসব ২০২৬ (OPEN)</h1>
   <span class="tag">ফরিদপুর ডিবেট ফোরাম</span>
 </header>
 
@@ -132,52 +105,16 @@ footer a{font-weight:600}
     <img src="https://i.postimg.cc/fLXgtfXV/tab-poster-for-open-ap.jpg" alt="চতুর্দশ জাতীয় বিতর্ক উৎসবের ব্যানার">
   </div>
 
-  <section class="cta" aria-labelledby="cta-title">
-    <h2 class="section-title" id="cta-title">নিবন্ধন শুরু করুন</h2>
-    <p>নিচের বোতামে চাপ দিয়ে অফিসিয়াল নিবন্ধন পেজে যান।</p>
-    <div class="row">
-      <a class="btn" id="reg" href="#">দল নিবন্ধন করুন</a>
-      <a class="btn alt" id="adj" href="#" hidden>অ্যাডজুডিকেটর নিবন্ধন</a>
-    </div>
-  </section>
-
-  <section class="steps-wrap" aria-labelledby="st-title">
-    <h2 class="section-title" id="st-title">নিবন্ধনের ধাপ</h2>
-    <ol class="steps">
-      <li><b>নিবন্ধন পেজে যান।</b> ওপরের "দল নিবন্ধন করুন" বোতামে চাপ দিন।</li>
-      <li><b>তথ্য দিন।</b> দলের নাম ও সদস্যদের তথ্য পূরণ করুন।</li>
-      <li><b>জমা দিন।</b> তথ্য যাচাই করে নিবন্ধন সম্পূর্ণ করুন।</li>
-    </ol>
+  <section class="cta">
+    <a class="btn" href="https://fdf.calicotab.com/FDF-14th-National-Debate_Fest-Open/">টুর্নামেন্ট পেজে যান</a>
   </section>
 </main>
 
 <footer>
   <strong>ফরিদপুর ডিবেট ফোরাম</strong><br>
   সংগ্রাম করি সবুজ স্পর্ধায়<br>
-  <a id="back" href="#">← উৎসবের মূল পেজে ফিরুন</a>
+  <a href="https://fdf.calicotab.com/FDF-14th-National-Debate_Fest-Open/">← উৎসবের মূল পেজে ফিরুন</a>
 </footer>
 
-<script>
-(function () {
-  // ===== লিংকগুলো এখানে বসান =====
-  var CONFIG = {
-    // Calicotab-এর নিবন্ধন লিংক (ডান ক্লিক করে Copy link address)। খালি থাকলে টুর্নামেন্টের মূল পেজে নিয়ে যাবে।
-    regUrl: "",
-    // অ্যাডজুডিকেটর নিবন্ধনের লিংক। খালি থাকলে বোতামটি লুকানো থাকবে।
-    adjUrl: "",
-    // টুর্নামেন্টের মূল পেজ
-    tournamentUrl: "https://fdf.calicotab.com/FDF-14th-National-Debate_Fest-Open/"
-  };
-  // ==============================
-
-  document.getElementById("reg").href = CONFIG.regUrl || CONFIG.tournamentUrl;
-  document.getElementById("back").href = CONFIG.tournamentUrl;
-  if (CONFIG.adjUrl) {
-    var a = document.getElementById("adj");
-    a.href = CONFIG.adjUrl;
-    a.hidden = false;
-  }
-})();
-</script>
 </body>
 </html>
