@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<base target="_top">
 <title>চতুর্দশ জাতীয় বিতর্ক উৎসব ২০২৬</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,7 +56,7 @@ a{color:inherit}
   border:2px dashed var(--yellow);border-radius:999px;color:var(--yellow-soft);font-weight:500;
 }
 
-main{max-width:900px;margin:0 auto;padding:3.2rem 1.25rem 0}
+main{max-width:900px;margin:0 auto;padding:3.2rem 1.25rem 3rem}
 
 /* ব্যানার */
 .frame{
@@ -79,9 +80,34 @@ main{max-width:900px;margin:0 auto;padding:3.2rem 1.25rem 0}
 }
 .btn:hover{background:var(--white);color:var(--green-deep)}
 
+/* কাউন্টডাউন ঘড়ি */
+.tracker{margin:3.5rem 0 0;text-align:center}
+.section-title{
+  font-family:var(--serif);font-weight:800;color:var(--green-deep);
+  font-size:clamp(1.4rem,3.6vw,1.9rem);margin:0 0 .4rem;
+}
+.status{margin:0 0 1rem;font-weight:600;color:var(--green)}
+.clock{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem;margin:0}
+.clock[hidden]{display:none}
+.unit{
+  position:relative;min-width:5.2rem;padding:.8rem .6rem .6rem;
+  background:var(--green-deep);color:var(--white);border-radius:12px;
+}
+.unit::after{ /* কাঁথার ফোঁড় */
+  content:"";position:absolute;inset:5px;border:1.5px dashed var(--yellow);
+  border-radius:8px;pointer-events:none;opacity:.8;
+}
+.unit b{
+  display:block;font-family:var(--serif);font-weight:800;line-height:1.2;
+  font-size:clamp(1.8rem,6vw,2.6rem);color:var(--yellow);
+}
+.unit span{font-size:.9rem}
+.clock.live .unit{background:var(--green)}
+
 @media (max-width:680px){
   .frame{box-shadow:6px 6px 0 var(--yellow)}
   .cta .btn{width:100%;text-align:center}
+  .unit{min-width:4.2rem}
 }
 </style>
 </head>
@@ -101,7 +127,62 @@ main{max-width:900px;margin:0 auto;padding:3.2rem 1.25rem 0}
   <section class="cta">
     <a class="btn" href="https://fdf.calicotab.com/FDF-14th-National-Debate_Fest-Open/">টুর্নামেন্ট পেজে যান</a>
   </section>
+
+  <section class="tracker" aria-labelledby="tr-title">
+    <h2 class="section-title" id="tr-title">উৎসবের কাউন্টডাউন</h2>
+    <p class="status" id="status" aria-live="polite"></p>
+    <div class="clock" id="clock" role="timer" aria-label="উৎসবের কাউন্টডাউন">
+      <div class="unit"><b id="cd-d">০০</b><span>দিন</span></div>
+      <div class="unit"><b id="cd-h">০০</b><span>ঘণ্টা</span></div>
+      <div class="unit"><b id="cd-m">০০</b><span>মিনিট</span></div>
+      <div class="unit"><b id="cd-s">০০</b><span>সেকেন্ড</span></div>
+    </div>
+  </section>
 </main>
 
+<script>
+(function () {
+  // ===== সময় বদলাতে শুধু এই দুই লাইন বদলান (ঢাকার সময়, +06:00) =====
+  var STARTS = new Date("2026-10-30T09:00:00+06:00");   // উৎসব শুরু
+  var ENDS   = new Date("2026-10-30T21:00:00+06:00");   // উৎসব শেষ
+  // ==================================================================
+
+  var digits = "০১২৩৪৫৬৭৮৯";
+  function bn(n) { return String(n).replace(/\d/g, function (d) { return digits[d]; }); }
+  function two(n) { return bn(n < 10 ? "0" + n : n); }
+
+  var status = document.getElementById("status");
+  var clock = document.getElementById("clock");
+  var cd = {
+    d: document.getElementById("cd-d"), h: document.getElementById("cd-h"),
+    m: document.getElementById("cd-m"), s: document.getElementById("cd-s")
+  };
+
+  function tick() {
+    var now = Date.now(), target, state;
+    if (now < STARTS.getTime()) { target = STARTS.getTime(); state = "before"; }
+    else if (now < ENDS.getTime()) { target = ENDS.getTime(); state = "live"; }
+    else { state = "after"; }
+
+    if (state === "after") {
+      clock.hidden = true;
+      status.textContent = "উৎসব শেষ হয়েছে। সবাইকে ধন্যবাদ।";
+      return;
+    }
+    clock.hidden = false;
+    clock.className = "clock " + state;
+    var text = state === "before" ? "উৎসব শুরু হতে বাকি" : "উৎসব চলছে, শেষ হতে বাকি";
+    if (status.textContent !== text) status.textContent = text;
+    var s = Math.max(0, Math.floor((target - now) / 1000));
+    cd.d.textContent = two(Math.floor(s / 86400));
+    cd.h.textContent = two(Math.floor(s % 86400 / 3600));
+    cd.m.textContent = two(Math.floor(s % 3600 / 60));
+    cd.s.textContent = two(s % 60);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
 </body>
 </html>
